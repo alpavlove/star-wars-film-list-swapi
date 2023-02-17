@@ -1,0 +1,36 @@
+<div class="max-w-3xl mx-auto mt-8">
+  <div class="px-6 bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="py-4">
+      <a
+        class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
+        routerLink="../.."
+        >Back</a
+      >
+    </div>
+
+    <div *ngIf="character$ | async as character">
+      <div class="pt-4">
+        <div class="font-bold text-xl mb-2">{{ character.name }}</div>
+      </div>
+
+      <div class="py-4">
+        <p class="mb-2"><span class="font-bold">Height:</span> {{ character.height }}</p>
+        <p class="mb-2"><span class="font-bold">Mass:</span> {{ character.mass }}</p>
+        <p class="mb-2"><span class="font-bold">Hair color:</span> {{ character.hair_color }}</p>
+        <p class="mb-2"><span class="font-bold">Skin color:</span> {{ character.skin_color }}</p>
+        <p class="mb-2"><span class="font-bold">Eye color:</span> {{ character.eye_color }}</p>
+        <p class="mb-2"><span class="font-bold">Birth year:</span> {{ character.birth_year }}</p>
+        <p class="mb-2"><span class="font-bold">Gender:</span> {{ character.gender }}</p>
+
+        <p class="mt-4"><span class="font-bold">Appeared in the following movies:</span></p>
+        <ul class="px-3 grid grid-cols-2 gap-4 list-disc">
+          <li *ngFor="let film of character.films">
+            <a [routerLink]="['/', 'films', film]" class="text-blue-500 hover:text-blue-700">{{
+              film | filmNameById | async
+            }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
